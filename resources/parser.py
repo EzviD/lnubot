@@ -58,3 +58,40 @@ def r_parse(url):
                     'strat':section.find_all('a',{'rel':'noopener noreferrer'})[1].get('href')})
 
     return results
+
+#CONTACTS PARSER
+def c_parse(url):
+    results = []
+    text = get_text(url)
+    soup = BeautifulSoup(text,features="lxml")
+
+    paragraph = soup.find_all('p')
+    headers = soup.find_all('h3')
+    for item in paragraph:
+        results.append({'text p':item.text})
+
+    for item in headers:
+        if item.find('a'):
+            a = item.find('a')
+            results.append({'text h3':a.text,
+                            'hrefs':a.get('href')})
+        else:
+            results.append({'text h3':item.text,
+                            'hrefs': None})
+
+    return results
+
+#STAFF PARSER
+def s_parse(url):
+    results = []
+    text = get_text(url)
+    soup = BeautifulSoup(text,features="lxml")
+
+    section = soup.find('article',{'class':'content staff'})
+    names = section.find_all('td',{'class':'name'})
+    for item in names:
+        a = item.find('a')
+        results.append({'name':a.text.lower().split()[0:2],
+                        'href':a.get('href')})
+
+    return results

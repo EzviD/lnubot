@@ -1,0 +1,10 @@
+/help - list of commands,
+/news - last news
+/about - information about university
+/facult - list of faculties
+/rector - the current rector
+/contacts - contacts
+------------=========-------------
+Also you can send me message in format Faculty Surname Name
+And you will get back link for the page of lecturer in the site
+Here is example: Журналістики Крупський Іван
