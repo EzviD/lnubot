@@ -12,7 +12,7 @@ bot = tb.TeleBot(Token)
 @bot.message_handler(commands=['start'])
 def start_message(message):
     bot.send_message(message.chat.id,'''Hi there.
-It is LNU website in Telegram for your comfort.\n
+It is LNU Bot in Telegram for your comfort.\n
 Enter /help to start''')
 
 @bot.message_handler(commands=['help'])
@@ -39,7 +39,7 @@ def news(message):
 @bot.message_handler(commands=['about'])
 def about(message):
     with open("tmp/about.txt","r",encoding='utf-8') as output:
-        data = input.read()
+        data = output.read()
         output.close()
     message_for_user = f"{data}\n{url}"
     bot.send_message(message.chat.id, message_for_user)
@@ -99,27 +99,28 @@ def send_msg(message):
     if message.text.lower() in ['lnu','лну']:
         photo = open(f'tmp/img/lnu/{randint(1,3)}.jpg','rb')
         bot.send_photo(message.chat.id, photo)
-    elif len(message.text.split()) == 3:
-        info = message.text.lower().split() #[faculty, surname, name]
+    elif len(message.text.split()) >= 3:
+        info = message.text.lower().split() #info - [faculty, surname, name]
+        faculty = ' '.join(info[:-2])
+        info.append(faculty) #info - [FALSE, surname, name, faculty]
         with open('tmp/staff.txt','r',encoding='utf-8') as output:
             _str = output.read()
             output.close()
         dict = eval(_str)
         try:
-            url = dict[info[0]]
+            url = dict[info[-1]]
             result = s_parse(url)
             flag = False
             for item in result:
-                if item['name']==info[1:]:
+                if item['name']==info[-3:-1]:
                     bot.send_message(message.chat.id, item['href'])
                     flag = True
             if flag:
                     flag = False
             else:
-                bot.send_message(message.chat.id, 'Wrong information')
+                bot.send_message(message.chat.id, 'Wrong input information')
         except KeyError:
-            bot.send_message(message.chat.id, 'Wrong information.')
-
+            bot.send_message(message.chat.id, 'Wrong input information.')
 
 if __name__ == '__main__':
     bot.polling()
