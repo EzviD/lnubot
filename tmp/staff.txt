@@ -11,10 +11,8 @@
 'міжнародних відносин':'https://intrel.lnu.edu.ua/about/staff',
 'культури та мистецтв':'https://kultart.lnu.edu.ua/about/staff',
 'журналістики':'https://journ.lnu.edu.ua/about/staff',
-'механікоматематичний':None,
-'економічний':None,
+'економічний':'https://econom.lnu.edu.ua/about/staff',
 'геологічний':'https://geology.lnu.edu.ua/about/staff',
 'географічний':'https://geography.lnu.edu.ua/about/staff',
 'біологічний':'https://bioweb.lnu.edu.ua/about/staff',
-'безпеки життєдіяльності': None,
-'фізичного виховання та спорту':None}
+"електроніки та комп'ютерних технологій":'https://electronics.lnu.edu.ua/about/staff'}
