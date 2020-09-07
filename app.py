@@ -3,7 +3,7 @@ from random import randint,seed
 from resources.parser import get_text, news_parse, f_parse, r_parse, c_parse, s_parse
 
 #CONFIG
-Token = "966190262:AAEJJpUkyV_AwbKV0HSjXb4qNuYxVv937GE"
+Token = "*"
 url = "https://www.lnu.edu.ua/"
 seed(1)
 bot = tb.TeleBot(Token)
